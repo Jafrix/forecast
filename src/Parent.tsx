@@ -2,42 +2,56 @@ import { useEffect, useLayoutEffect, useState } from "react";
 
 //! ==========  Example 1  ==========================================================================================
 
-// function Parent() {
-//   console.log("Parent 1");
+export const Parent = () => {
+  const [num, setNum] = useState(0);
 
-//   useEffect(() => {
-//     console.log("Parent useEffect 2");
-//   }, []);
+  console.log("Parent 1");
 
-//   useLayoutEffect(() => {
-//     console.log("Parent useLayoutEffect 3");
-//   }, []);
+  const clickHandler = () => setNum((prev) => prev+1)
 
-//   return (
-//     <div>
-//       <Child />
-//       {console.log("I am Parent in DOM")}
-//     </div>
-//   );
-// }
+  useEffect(() => {
+    console.log("Parent useEffect 2");
+    
+    return () => {
+      console.log("message")
+    }
+  }, [num]);
 
-// function Child() {
-//   console.log("CHILD 1");
+  useLayoutEffect(() => {
+    console.log("Parent useLayoutEffect 3");
+  }, [num]);
 
-//   useEffect(() => {
-//     console.log("CHILD useEffect 2");
-//   }, []);
+  return (
+    <div>
+      
+      <Child num={num} />
+      <button onClick={clickHandler}>render</button>
+       <div style={{ fontSize: "45px", textAlign: "center" }}>{num}</div>
+      {/* {console.log("I am Parent in DOM")} */}
 
-//   useLayoutEffect(() => {
-//     console.log("CHILD useLayoutEffect 3");
-//   }, []);
+    </div>
+  );
+}
 
-//   return <div>O!{console.log("I am Child in DOM")}</div>;
-// }
+export const Child = ({num}) => {
+  console.log("CHILD 1");
 
-// export default Parent;
+  useEffect(() => {
+    console.log("CHILD useEffect 2");
+  }, [num]);
 
-//? ==================== Explanation ======================================================================
+  useLayoutEffect(() => {
+    console.log("CHILD useLayoutEffect 3");
+  }, [num]);
+
+  return <div>Render Child in DOM!
+    {/* {console.log("I am Child in DOM")} */}
+    </div>;
+}
+
+
+
+//? ==================== Explanation ==================================================================
 
 //* В React есть чёткое разделение на два основных этапа при рендере компонента:
 
@@ -70,48 +84,58 @@ import { useEffect, useLayoutEffect, useState } from "react";
 //* Отписки через Cleanup функцию внутри юзЭффекта
 
 //! ==================  Example 2  ==================================================================================
-export const Child = ({ num }) => {
-  console.log("child: render");
+
+// export const Child = ({ num }) => {
+//   console.log("child: render");
   
-  useEffect(() => {
-    console.log("child: effect");
-    return () => {
-      console.log("child: cleanup effect");
-    };
-  }, [num]);
+//   useEffect(() => {
+//     console.log("child: effect");
+//     return () => {
+//       console.log("child: cleanup effect");
+//     };
+//   }, [num]);
   
-  return null;
- };
+//   return null;
+//  };
  
- export const App2 = () => {
-  const [num, setNum] = useState(0);
+//  export const Parent = () => {
+//   const [num, setNum] = useState(0);
   
-  console.log("parent: render");
+//   console.log("parent: render");
   
-  const clickHandler = () => setNum((prev) => prev + 1);
+//   const clickHandler = () => setNum((prev) => prev + 1);
   
-  useLayoutEffect(() => {
-    console.log("parent: layout effect"); 
-    return () => {
-      console.log("parent: cleanup layout effect"); 
-    };
-  }, [num]);
+//   useLayoutEffect(() => {
+//     console.log("parent: layout effect"); 
+//     return () => {
+//       console.log("parent: cleanup layout effect"); 
+//     };
+//   }, [num]);
   
-  useEffect(() => {
-    console.log("parent: effect"); 
-    return () => {
-      console.log("parent: cleanup effect"); 
-    };
-  }, [num]);
+//   useEffect(() => {
+//     console.log("parent: effect"); 
+//     return () => {
+//       console.log("parent: cleanup effect"); 
+//     };
+//   }, [num]);
   
-  return (
-    <>
-      <Child num={num} />
-      <button onClick={clickHandler}>render</button>
-      <div style={{ fontSize: "45px", textAlign: "center" }}>{num}</div>
-    </>
-  );
- };
+//   return (
+//     <>
+//       <Child num={num} />
+//       <button onClick={clickHandler}>render</button>
+//       <div style={{ fontSize: "45px", textAlign: "center" }}>{num}</div>
+//     </>
+//   );
+//  };
+
+
+
+ 
+
+//  ? ================= Answers =====================
+
+
+
 
 // 1. parent: render 
 // 2. child: render 

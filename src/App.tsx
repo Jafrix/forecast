@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./App.css";
 import InfiniteScrollList from "./InfiniteScroll";
-import Parent, { App2 } from "./Parent";
+import { Parent } from "./Parent";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -23,7 +23,7 @@ function App() {
         <button onClick={updateClick}>count is {count}</button>
       </div>
       <hr></hr>
-      <App2 />
+      <Parent />
       {/* <InfiniteScrollList /> */}
     </>
   );
