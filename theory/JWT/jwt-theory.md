@@ -25,9 +25,11 @@
                         (Access - сохр. в localStorage)
                        (Refresh - сервер установит в куки)
 
+
 *Пользователь что то запросил    ===>     headers:    ===>    Сервер проверяет валидность токена*
                                        authorization
                                       {accessToken: ..}
+
 
 *Если не валидный токен        ====>     Interceptor на обновление AT через RT* 
 *и ошибка 401(unauthorized)*

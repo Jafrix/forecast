@@ -51,8 +51,8 @@ function fetchUser() {
 
 //* Функция должна возвращать промис, поэтому нет смысла создавать переменную и ее же возвращать
 
-const p = new Promise();
-return p;
+// const p = new Promise();
+// return p;
 
 function fetchUserGame(id) {
   return new Promise((resolve, reject) => {
