@@ -18,7 +18,9 @@ export const Parent = () => {
   }, [num]);
 
   useLayoutEffect(() => {
+
     console.log("Parent useLayoutEffect 3");
+    
   }, [num]);
 
   return (

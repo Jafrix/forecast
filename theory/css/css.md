@@ -39,4 +39,4 @@ font-display
 
 - transition = от старта к энду
 
-- @keyframe = от старта
+- @keyframe = от старта, с точками
