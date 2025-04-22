@@ -50,3 +50,5 @@
 - git fork – Fork a repository on GitHub (via UI) to start contributing.
 - git pull origin <branch> – Pull changes from the original remote branch.
 - git push origin <branch> – Push your branch to the original repository for collaboration.
+
+![gitCommands](gitcheet.png)
