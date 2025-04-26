@@ -77,3 +77,42 @@ function run() {
 // Promise.allSettled
 // Promise.any
 // Promise.race
+
+
+// * ==============================================================================================
+//Что выведет консоль
+
+console.log('A');
+
+setTimeout(() => {
+  console.log('B');
+}, 0);
+
+Promise.resolve()
+  .then(() => {
+    console.log('C');
+    return Promise.reject('D');
+  })
+  .catch((err) => {
+    console.log(err);
+    return 'E';
+  })
+  .finally(() => {
+    console.log('F');
+  });
+
+(async () => {
+  console.log('G');
+  try {
+    await Promise.reject('H');
+  } catch (e) {
+    console.log(e);
+  } finally {
+    console.log('I');
+  }
+})();
+
+console.log('J');
+
+// A G J C E F H      D F   I    B // не доедлано
+// * ==============================================================================================
