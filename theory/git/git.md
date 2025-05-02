@@ -52,3 +52,5 @@
 - git push origin <branch> – Push your branch to the original repository for collaboration.
 
 ![gitCommands](gitcheet.png)
+
+![gitPlan](gitcheet2.jpg)
