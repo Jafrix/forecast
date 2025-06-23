@@ -102,3 +102,4 @@ import { doSomething } from "@/utils/doSomething";
 ```
 
 - Особенно актуально, если ты делаешь npm-библиотеки (под ESM и CJS одновременно).
+

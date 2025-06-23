@@ -1,29 +1,38 @@
 import { useState } from "react";
 
 import "./App.css";
-import InfiniteScrollList from "./InfiniteScroll";
+// import InfiniteScrollList from "./InfiniteScroll";
 import { Parent } from "./Parent";
+// import { ClientList } from "./ClientList";
+import Input from "./Input";
 
 function App() {
   const [count, setCount] = useState(0);
 
   const updateClick = () => {
     setCount(count + 1);
-    setCount(count + 1);
-    setCount(count + 1);
+    // setCount(count + 1);
+    // setCount(count + 1);
 
-    console.log(count);
+    // console.log(count);
   };
 
   return (
     <>
       <div></div>
-      <h1>React App</h1>
+      <h1 style={{ marginBottom: "10rem" }}>Know your fuckin "React App"</h1>
+      <Input />
+      <hr></hr>
+      <h2>Counter</h2>
       <div className="card">
         <button onClick={updateClick}>count is {count}</button>
       </div>
       <hr></hr>
       <Parent />
+      <hr></hr>
+      
+      
+      {/* <ClientList /> */}
       {/* <InfiniteScrollList /> */}
     </>
   );

@@ -5,53 +5,82 @@ import { useEffect, useLayoutEffect, useState } from "react";
 export const Parent = () => {
   const [num, setNum] = useState(0);
 
-  console.log("Parent 1");
+  console.log("Parent Render");
 
-  const clickHandler = () => setNum((prev) => prev+1)
+  const clickHandler = () => setNum((prev) => prev + 1);
 
   useEffect(() => {
-    console.log("Parent useEffect 2");
-    
+    console.log("Parent useEffect");
     return () => {
-      console.log("message")
-    }
+      console.log("Parent Clean Up useEffect");
+    };
   }, [num]);
 
   useLayoutEffect(() => {
-
-    console.log("Parent useLayoutEffect 3");
-    
+    console.log("Parent useLayoutEffect");
+    return () => {
+      console.log("Parent Clean Up useLayoutEffect");
+    };
   }, [num]);
 
   return (
     <div>
-      
-      <Child num={num} />
-      <button onClick={clickHandler}>render</button>
-       <div style={{ fontSize: "45px", textAlign: "center" }}>{num}</div>
-      {/* {console.log("I am Parent in DOM")} */}
+       <h2>Render</h2>
 
+      <Child num={num}/>
+     
+      <button onClick={clickHandler}>render</button>
+      <div style={{ fontSize: "45px", textAlign: "center" }}>{num}</div>
+      {/* {console.log("I am Parent in DOM")} */}
     </div>
   );
-}
+};
 
 export const Child = ({num}) => {
-  console.log("CHILD 1");
+  console.log("CHILD Render");
 
   useEffect(() => {
-    console.log("CHILD useEffect 2");
+    console.log("CHILD useEffect");
+    return () => {
+      console.log("CHILD Clean Up useEffect");
+    };
   }, [num]);
 
   useLayoutEffect(() => {
-    console.log("CHILD useLayoutEffect 3");
+    console.log("CHILD useLayoutEffect");
+    return () => {
+      console.log("CHILD Clean Up useLayoutEffect");
+    };
   }, [num]);
 
-  return <div>Render Child in DOM!
-    {/* {console.log("I am Child in DOM")} */}
-    </div>;
-}
+  return (
+    <div>
+      {/* <Child2 /> */}
+      Render Child in DOM!
+      {/* {console.log("I am Child in DOM")} */}
+    </div>
+  );
+};
 
+// export const Child2 = () => {
+//   console.log("CHILD 2");
 
+//   useEffect(() => {
+//     console.log("CHILD useEffect 10");
+//   }, []);
+
+//   useLayoutEffect(() => {
+//     console.log("CHILD useLayoutEffect 10");
+//   }, []);
+
+//   return (
+//     <div>
+      
+//       Render Child-2 in DOM!
+//       {console.log("I am Child-2 in DOM")}
+//     </div>
+//   );
+// };
 
 //? ==================== Explanation ==================================================================
 
@@ -89,38 +118,38 @@ export const Child = ({num}) => {
 
 // export const Child = ({ num }) => {
 //   console.log("child: render");
-  
+
 //   useEffect(() => {
 //     console.log("child: effect");
 //     return () => {
 //       console.log("child: cleanup effect");
 //     };
 //   }, [num]);
-  
+
 //   return null;
 //  };
- 
+
 //  export const Parent = () => {
 //   const [num, setNum] = useState(0);
-  
+
 //   console.log("parent: render");
-  
+
 //   const clickHandler = () => setNum((prev) => prev + 1);
-  
+
 //   useLayoutEffect(() => {
-//     console.log("parent: layout effect"); 
+//     console.log("parent: layout effect");
 //     return () => {
-//       console.log("parent: cleanup layout effect"); 
+//       console.log("parent: cleanup layout effect");
 //     };
 //   }, [num]);
-  
+
 //   useEffect(() => {
-//     console.log("parent: effect"); 
+//     console.log("parent: effect");
 //     return () => {
-//       console.log("parent: cleanup effect"); 
+//       console.log("parent: cleanup effect");
 //     };
 //   }, [num]);
-  
+
 //   return (
 //     <>
 //       <Child num={num} />
@@ -130,17 +159,10 @@ export const Child = ({num}) => {
 //   );
 //  };
 
-
-
- 
-
 //  ? ================= Answers =====================
 
-
-
-
-// 1. parent: render 
-// 2. child: render 
+// 1. parent: render
+// 2. child: render
 
 // 3. parent: cleanup layout effect
 // 4. parent: layout effect

@@ -13,7 +13,8 @@ function debounce(fn, delay) {
   };
 }
 
-//  В Реакте ========================================================
+//  В Реакте 
+// ========================================================
 // import React, { useState, useEffect, useMemo } from "react";
 
 // function useDebouncedValue(value, delay) {
@@ -112,18 +113,18 @@ function debounce(fn, delay) {
 
 //? Напиши функцию, которая вернет числа по частоте их повторения, например, по данному в примере массиву получится [2, 5, 1, 7]
 
-// const arr = [1,1,2,2,2,5,5,5,2,7];
+const arr = [1,1,2,2,2,5,5,5,2,7];
 
-// const fooo = (arr) => {
+const fooo = (arr) => {
 
-// const freqMap = arr.reduce((acc, num) => {
-//       acc[num] = (acc[num] || 0 ) + 1;
-//     return acc;
-//   }, {});
+const freqMap = arr.reduce((acc, num) => {
+      acc[num] = (acc[num] || 0 ) + 1;
+    return acc;
+  }, {});
 
-// return Object.entries(freqMap).sort((a, b)=>b[1] - a[1]).map((elem)=>+elem[0])
+return Object.entries(freqMap).sort((a, b)=>b[1] - a[1]).map((elem)=>+elem[0])
 
-// }
+}
 
 //? Правильный порядок логов согласно Event loop
 
