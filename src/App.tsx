@@ -20,7 +20,7 @@ function App() {
   return (
     <>
       <div></div>
-      <h1 style={{ marginBottom: "10rem" }}>Know your fuckin "React App"</h1>
+      <h1 style={{ marginBottom: "10rem" }}>Know your "React App"</h1>
       <Input />
       <hr></hr>
       <h2>Counter</h2>
