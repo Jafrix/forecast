@@ -46,7 +46,7 @@ function Input() {
     debouncer(e.target.value);
   };
 
-  const handleDelete = () => {
+  const handleDelete = () => { 
     setText("");
     setResult("");
   };

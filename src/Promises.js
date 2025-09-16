@@ -20,13 +20,12 @@ function run() {
       console.log("3");
       const data = { id: 1, name: "Alex" };
       console.log("4");
-      resolve(data); // Не сразу попадаем в ЗЕН ! Сначала выполняется ВСЕ внутри Таймаута !
+      resolve(data);
       console.log("5");
     }, 1000);
   });
 
-  console.log(p); //Promise{pending}, потому что не прошлись одним из методов - then\catch
-  //   then - вызовется когда кто то вызовет resolve внутри промиса !
+  console.log(p);
 
   p.then((data) => {
     console.log(data);
@@ -78,41 +77,108 @@ function run() {
 // Promise.any
 // Promise.race
 
-
 // * ==============================================================================================
 //Что выведет консоль
 
-console.log('A');
+console.log("A");
 
 setTimeout(() => {
-  console.log('B');
+  console.log("B");
 }, 0);
 
 Promise.resolve()
   .then(() => {
-    console.log('C');
-    return Promise.reject('D');
+    console.log("C");
+    return Promise.reject("D");
   })
   .catch((err) => {
     console.log(err);
-    return 'E';
+    return "E";
   })
   .finally(() => {
-    console.log('F');
+    console.log("F");
   });
 
 (async () => {
-  console.log('G');
+  console.log("G");
   try {
-    await Promise.reject('H');
+    await Promise.reject("H");
   } catch (e) {
     console.log(e);
   } finally {
-    console.log('I');
+    console.log("I");
   }
-})();
+})(); // IIFE
 
-console.log('J');
+console.log("J");
 
 // A G J C E F H      D F   I    B // не доедлано
+// * ==============================================================================================
+
+console.log(1);
+
+setTimeout(() => {
+  console.log(2);
+  Promise.resolve().then(() => {
+    console.log(3);
+  });
+}, 0);
+
+Promise.resolve()
+  .then(() => {
+    console.log(4);
+    setTimeout(() => {
+      console.log(5);
+    }, 0);
+  })
+  .then(() => {
+    console.log(6);
+  });
+
+setTimeout(() => {
+  console.log(7);
+}, 0);
+
+console.log(7);
+
+// * ==============================================================================================
+
+Promise.resolve(1)
+  .then((x) => console.log(1))
+  .catch((x) => console.log(2))
+  .then((x) => console.log(3));
+
+Promise.reject(2)
+  .then((x) => console.log(4))
+  .then((x) => console.log(5))
+  .catch((x) => console.log(6))
+  .then((x) => console.log(7));
+
+Promise.resolve(1)
+  .then(() => console.log("2"))
+  .then(() => console.log("3"));
+
+Promise.reject(2)
+  .catch(() => console.log("4"))
+  .then(() => console.log("5"));
+
+// * ==============================================================================================
+
+console.log(1);
+
+let p = new Promise(function (resolve, reject) {
+  console.log(2);
+  resolve();
+});
+
+p.then(() => console.log(3));
+
+Promise.resolve().then(() => console.log(4));
+
+Promise.resolve().then(() => setTimeout(() => console.log(6), 0));
+
+setTimeout(() => console.log(5), 0);
+
+console.log(7);
+
 // * ==============================================================================================

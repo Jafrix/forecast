@@ -21,6 +21,9 @@ function App() {
     <>
       <div></div>
       <h1 style={{ marginBottom: "10rem" }}>Know your "React App"</h1>
+      <hr></hr>
+      
+      <hr></hr>
       <Input />
       <hr></hr>
       <h2>Counter</h2>
