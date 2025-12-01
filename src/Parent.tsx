@@ -1,13 +1,13 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { memo, useEffect, useLayoutEffect, useState } from "react";
 
 //! ==========  Example 1  ==========================================================================================
 
 export const Parent = () => {
-  const [num, setNum] = useState(0);
+  const [num, setNum] = useState(false);
 
   console.log("Parent Render");
 
-  const clickHandler = () => setNum((prev) => prev + 1);
+  const clickHandler = () => setNum(prev => prev + 1);
 
   useEffect(() => {
     console.log("Parent useEffect");
